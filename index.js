@@ -17,6 +17,8 @@ const chalk = require('chalk');
 bot.config = require('./config');
 bot.db = lowdb(new FileSync('database.json'));
 
+bot.db.defaults(bot.config.database).write(); // !important
+
 /**
  * Charge les fichiers d'un répertoire comme événements.
  * 
