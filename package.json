@@ -1,0 +1,27 @@
+{
+  "name": "weyzer-community",
+  "version": "0.1.0",
+  "description": "A private Discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Weyzer-Community"
+  },
+  "keywords": [
+    "#private",
+    "#discord"
+  ],
+  "author": "Thibault-MJS",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "discord.js": "^12.2.0",
+    "figlet": "^1.5.0",
+    "fs": "0.0.1-security",
+    "lowdb": "^1.0.0",
+    "path": "^0.12.7"
+  }
+}
