@@ -1,4 +1,5 @@
 const { Client, Message } = require('discord.js'); // !important
+const Random = require('../Classes/Random');
 
 /**
  * Événement message
@@ -13,6 +14,12 @@ module.exports = async (bot, message) => {
     if (!message.member) message.member = await message.guild.members.fetch(message.author);
     
     // * Partie traitement
+
+    if (!bot.db.get('ignore_channel').find({ guild: message.guild.id, channel: message.channel.id }).value()) {
+        if (message.content.startsWith(bot.config.prefix)) return;
+        var xpWon = Random.between(5, 10);
+        if (!bot.db.get('profil').find({ guild: message.guild.id })) return
+    };
 
     // * Partie commande
 
