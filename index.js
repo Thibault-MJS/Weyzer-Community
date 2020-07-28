@@ -24,7 +24,7 @@ bot.db.defaults(bot.config.database).write(); // !important
  * 
  * @param {String} dir 
  */
-var loadEvents = (dir = './events/') => {
+var loadEvents = (dir = bot.config.dirs.events) => {
     let eventListing = [];
     readdirSync(dir).filter(files => files.endsWith('.js')).forEach(file => {
         var eventName = file.split(".")[0];
@@ -41,7 +41,7 @@ var loadEvents = (dir = './events/') => {
  * 
  * @param {String} dir 
  */
-var loadCommands = (dir = './commands/') => {
+var loadCommands = (dir = bot.config.dirs.commands) => {
     let commandListing = [];
     readdirSync(dir).forEach(dirs => {
         var commands = readdirSync(`${dir}${sep}${dirs}${sep}`).filter(files => files.endsWith('.js'));
