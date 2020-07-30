@@ -9,12 +9,20 @@ const LevelBar = require('../../Classes/LevelBar'); // !important
  * @param {String[]} args 
  */
 module.exports.run = (bot, message, args) => {
-    if (!bot.db.get('profil').find({ guild: message.guild.id, user: message.author.id }).value()) return message.reply('', { embed: {
-        color: bot.config.colors.error,
-        description: `${bot.config.emotes.error} Vous n'avez aucun profile.`
-    } });
+    let member = message.mentions.members.first().user || member;
+    if (!member) {
+        if (!bot.db.get('profil').find({ guild: message.guild.id, user: message.author.id }).value()) return message.reply('', { embed: {
+            color: bot.config.colors.error,
+            description: `${bot.config.emotes.error} Vous n'avez aucun profile.`
+        } });
+    } else {
+        if (!bot.db.get('profil').find({ guild: message.guild.id, user: member.id }).value()) return message.reply('', { embed: {
+            color: bot.config.colors.error,
+            description: `${bot.config.emotes.error} ${member} n'a aucun profile.`
+        } });
+    }
     // * Définit la barre d'xp
-    var profil = bot.db.get('profil').filter({ guild: message.guild.id, user: message.author.id }).find('user').value();
+    var profil = bot.db.get('profil').filter({ guild: message.guild.id, user: member.id }).find('user').value();
     let emote = [];
     if (profil.emote === null) emote.push(bot.config.emotes.blue, bot.config.emotes.blank);
     else emote.push(profil.emote, bot.config.emotes.blank);
@@ -23,7 +31,7 @@ module.exports.run = (bot, message, args) => {
     let bar = LevelBar.doLevelBar(emote[0], emote[1], countEmoteXP);
     // * Réponse finale
     let embed = new MessageEmbed()
-        .setAuthor(message.author.tag, message.author.displayAvatarURL())
+        .setAuthor(member.tag, member.displayAvatarURL())
         .setDescription(`Niveau **${profil.lvl}** (\`${profil.xp}\`/\`${profil.but}\`)\n\n${bar}`)
         .addField("❯ **Monnaie**", `\`\`\`js\n${profil.money}$\`\`\``)
         .addField("❯ **Likes**", `\`\`\`js\n${profil.likes} likes\`\`\``)
