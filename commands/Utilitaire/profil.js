@@ -29,7 +29,7 @@ module.exports.run = (bot, message, args) => {
         .setColor((profil.color !== null) ? profil.color : bot.config.colors.primary)
         .setFooter(`Weyzer Community © All rights reserved.`, bot.user.displayAvatarURL())
         .setTimestamp();
-    if (profil.description !== null) embed.addField("❯ **Description**", `\`\`\`js\n${profil.description}$\`\`\``);
+    if (profil.description !== null) embed.addField("❯ **Description**", `${profil.description}`);
     message.channel.send(embed);
 }
 
