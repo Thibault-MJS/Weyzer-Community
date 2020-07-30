@@ -26,6 +26,7 @@ module.exports.run = (bot, message, args) => {
         .setAuthor(message.author.tag, message.author.displayAvatarURL())
         .setDescription(`Niveau **${profil.lvl}** (\`${profil.xp}\`/\`${profil.but}\`)\n\n${bar}`)
         .addField("❯ **Monnaie**", `\`\`\`js\n${profil.money}$\`\`\``)
+        .addField("❯ **Likes**", `\`\`\`js\n${profil.likes} likes\`\`\``)
         .setColor((profil.color !== null) ? profil.color : bot.config.colors.primary)
         .setFooter(`Weyzer Community © All rights reserved.`, bot.user.displayAvatarURL())
         .setTimestamp();
