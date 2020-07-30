@@ -15,7 +15,7 @@ module.exports.run = (bot, message, args) => {
     // * Configuration de la description
     var description = args.slice(0).join(' ');
     if (!description) return message.reply('', { embed: {
-        color: bot.config.color.error,
+        color: bot.config.colors.error,
         description: `${bot.config.emotes.error} Veuillez entrer la description de votre profile.`
     } });
     // * Sauvegarder dans la base de donnée
@@ -23,7 +23,7 @@ module.exports.run = (bot, message, args) => {
     // * Réponse finale
     return message.channel.send('', { embed: {
         color: bot.config.colors.success,
-        description: `${bot.config.colors.success} ${message.author} Votre profile a été mis à jour.`
+        description: `${bot.config.emotes.success} ${message.author} Votre profile a été mis à jour.`
     } });
 };
 
