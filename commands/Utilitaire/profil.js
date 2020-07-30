@@ -9,7 +9,7 @@ const LevelBar = require('../../Classes/LevelBar'); // !important
  * @param {String[]} args 
  */
 module.exports.run = (bot, message, args) => {
-    let member = message.mentions.members.first().user || member;
+    let member = message.mentions.members.first() || message.author;
     if (!member) {
         if (!bot.db.get('profil').find({ guild: message.guild.id, user: message.author.id }).value()) return message.reply('', { embed: {
             color: bot.config.colors.error,
