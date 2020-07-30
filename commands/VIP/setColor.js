@@ -18,6 +18,8 @@ module.exports.run = (bot, message, args) => {
         color: bot.config.colors.error,
         description: `${bot.config.emotes.error} Veuillez choisir votre couleur [ici](https://mycolor.space/).`
     } });
+    // * Sauvegarder dans la base de donnée
+    bot.db.get('profil').find({ guild: message.guild.id, user: message.author.id }).assign({ color: color }).write();
     // * Réponse finale
     return message.channel.send('', { embed: {
         color: bot.config.colors.success,
